@@ -8,6 +8,12 @@ export interface HttpServiceModel {
   remove(id: number): Observable<any>;
 }
 
+export interface AuthServiceInterface {
+  logged(): void;
+  logIn(value: { username: string, password: string }): void;
+  logOut(): void;
+}
+
 export interface HttpResponseModel {
   data: any[];
   total: number;
@@ -16,16 +22,12 @@ export interface HttpResponseModel {
   accessToken: string;
   refreshToken: string;
 }
-export interface AuthServiceInterface {
-  logged(): void;
-  logIn(value: { username:string, password:string }): void;
-  logOut(): void;
-}
 
 export interface AuthDataModel {
   username: string;
   password: string;
 }
+
 export interface ItemModel {
   id?: number;
   category: string;
@@ -34,80 +36,21 @@ export interface ItemModel {
   title: string;
 }
 
-export interface ItemsStateModel {
-  readonly data: ItemModel[];
-  readonly loading: boolean;
+export interface WorkerModel {
+  id: string,
+  name: string,
+  phone: number,
+  category: string
 }
 
-export interface CartItemModel extends ItemModel {
-  count: number;
-}
+export type ItemsKeys = 'title' | 'imgSrc' | 'price';
+export type WorkersKeys = 'name' | 'phone' | 'category';
+export type GridFieldTypes = 'image' | 'input' | 'button';
 
-export interface CartState {
-  readonly data: CartItemModel[];
-  readonly loading: boolean;
-}
-
-export interface DataGridItemModel<T> {
-  key: T;
-  type?: string;
-  header?: string;
-  access?: string;
-}
-export class WorkerFieldTypes {
-  static NAME = 'name';
-  static PHONE = 'phone';
-  static CATEGORY = 'category';
-}
-
-export class WorkerModel {
-  constructor(
-    public id: number,
-    public name: string,
-    public phone: number,
-    public category: string = 'sales') { }
-}
-export interface Message {
-  username?: string;
-  clientX: number;
-  clientY: number;
-  size?: number;
-  action?: string;
-  type?: string;
-}
-export enum FieldTypes {
-  input = "input",
-  password = "password",
-  contenteditable = "contenteditable",
-  textarea = "textarea",
-  select = "select",
-  button = "button",
-}
-
-export interface FieldValidator {
-  name: string;
-  param?: string;
-  message: string;
-}
-
-export interface FieldConfig {
-  name: string;
-  type: FieldTypes;
-  label?: string;
-  value?: string;
-  placeholder?: string;
-  options?: string[];
-  validators?: FieldValidator[];
-  id?: string;
-  cssClass?: string;
-  direction?: "horizontal" | "vertical";
-}
-export class FilterTypes {
-  static TITLE = 'title';
-  static PRICE_FROM = 'priceFrom';
-  static CATEGORY = 'category';
-  static CURRENT_PAGE = 'currentPage';
-  static ITEMS_PER_PAGE = 'itemsPerPage';
+export interface GridDataModel<T> {
+  key?: T;
+  type?: GridFieldTypes;
+  text?: string;
 }
 
 export interface ItemsFiltersModel {
@@ -115,15 +58,5 @@ export interface ItemsFiltersModel {
   priceFrom?: number;
   category?: string;
   currentPage?: number;
-  itemsPerPage?: any;
-}
-
-export class ItemsFilters {
-  constructor(
-    public title = '',
-    public priceFrom = 0,
-    public category = '',
-    public currentPage = 1,
-    public itemsPerPage = '5') {
-  }
+  itemsPerPage?: number;
 }
