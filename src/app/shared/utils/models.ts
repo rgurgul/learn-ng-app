@@ -5,12 +5,12 @@ export interface HttpServiceModel {
   get(id: string): Observable<any>;
   add(item: any): Observable<any>;
   update(item: any): Observable<any>;
-  remove(id: number): Observable<any>;
+  remove(id: string): Observable<any>;
 }
 
 export interface AuthServiceInterface {
   logged(): void;
-  logIn(value: { username: string, password: string }): void;
+  logIn(value: AuthDataModel): void;
   logOut(): void;
 }
 
@@ -37,7 +37,7 @@ export interface ItemModel {
 }
 
 export interface WorkerModel {
-  id: string,
+  id?: string,
   name: string,
   phone: number,
   category: string
