@@ -1,0 +1,9 @@
+<p>item-details works!</p>
+
+<!-- <div *ngFor="let item of data | keyvalue">
+  {{item.key}} : {{item.value}}
+</div>
+
+ -->
+
+<app-grid [data]="data | keyvalue" [config]="[{ key: 'key'}, {key: 'value'}]"></app-grid>

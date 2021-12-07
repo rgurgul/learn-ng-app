@@ -19,7 +19,7 @@ export class AuthInterceptor implements HttpInterceptor {
         }),
         catchError((error) => {
           alert('ERROR \n' + JSON.stringify(error));
-          return throwError(error);
+          return throwError(()=>{});
         })
       )
   }

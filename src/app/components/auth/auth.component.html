@@ -1,0 +1,18 @@
+<!-- {{f.value|json }}
+<br>
+{{f.valid}} -->
+<!-- {{authService.access}} -->
+
+<form *ngIf="!authService.access" #f="ngForm" (submit)="onSubmit(f)">
+  <input type="text" required minlength="5" name="username" ngModel="admin@localhost">
+  <div class="text-danger">
+    {{f.controls.username?.errors|json}}
+  </div>
+  <div class="text-danger" *ngIf="f.controls.username?.hasError('minlength')">
+    za mało znaków
+  </div>
+  <input type="text" required minlength="5" name="password" ngModel="Admin1">
+  <button>log in</button>
+</form>
+
+<button *ngIf="authService.access" (click)="authService.logOut()">log out</button>
