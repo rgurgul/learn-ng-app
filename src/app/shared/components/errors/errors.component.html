@@ -1,16 +1,8 @@
 <div *ngFor="let item of errors | keyvalue">
   <div [ngSwitch]="item.key" class="text-danger fw-bold text-sm">
-    <small *ngSwitchCase="'required'">
-      pole wymagane
-    </small>
-    <small *ngSwitchCase="'pattern'">
-      coś nie halo
-    </small>
-    <small *ngSwitchCase="'email'">
-      email not ok
-    </small>
-    <small *ngSwitchDefault>
-      nieznany błąd {{errors|json}}
-    </small>
+    <small *ngSwitchCase="'required'"> pole wymagane </small>
+    <small *ngSwitchCase="'pattern'"> coś nie halo </small>
+    <small *ngSwitchCase="'email'"> email not ok </small>
+    <small *ngSwitchDefault> {{ errors | json }} </small>
   </div>
 </div>
