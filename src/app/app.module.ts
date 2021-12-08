@@ -3,7 +3,6 @@ import { SearchPipe } from './shared/pipes/search.pipe';
 import { ErrorsComponent } from './shared/components/errors/errors.component';
 import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ItemsComponent } from './pages/items/items.component';
@@ -13,9 +12,10 @@ import { GridComponent } from './components/grid/grid.component';
 import { SearchComponent } from './components/search/search.component';
 import { ItemDetailsComponent } from './pages/item-details/item-details.component';
 import { AuthComponent } from './components/auth/auth.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { AddItemComponent } from './components/add-item/add-item.component';
+import { RegisterComponent } from './pages/register/register.component';
 
 @NgModule({
   declarations: [
@@ -28,14 +28,16 @@ import { AddItemComponent } from './components/add-item/add-item.component';
     SearchComponent,
     ItemDetailsComponent,
     AuthComponent,
-    AddItemComponent
+    AddItemComponent,
+    RegisterComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
-    NgbModule
+    NgbModule,
+    ReactiveFormsModule
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }

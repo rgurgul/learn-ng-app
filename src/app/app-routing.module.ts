@@ -1,3 +1,4 @@
+import { RegisterComponent } from './pages/register/register.component';
 import { ItemDetailsComponent } from './pages/item-details/item-details.component';
 import { WorkersComponent } from './pages/workers/workers.component';
 import { ItemsComponent } from './pages/items/items.component';
@@ -8,6 +9,7 @@ const routes: Routes = [
   { path: 'items', component: ItemsComponent },
   { path: 'items/:id', component: ItemDetailsComponent },
   { path: 'workers', component: WorkersComponent },
+  { path: 'register', component: RegisterComponent },
   { path: '', component: ItemsComponent }
 ];
 
