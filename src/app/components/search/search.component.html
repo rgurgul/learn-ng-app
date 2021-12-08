@@ -1,5 +1,10 @@
 <p>search works!</p>
-{{f.value | json}}
+{{ f.value | json }}
 <form #f="ngForm">
-    <input [name]="item" ngModel *ngFor="let item of controls ">
+  <label *ngFor="let item of controls" class="my-2">
+    {{item}}
+    <input class="form-control" [name]="item" ngModel/>
+  </label>
 </form>
+
+

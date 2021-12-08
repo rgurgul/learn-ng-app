@@ -1,0 +1,23 @@
+<ng-template #tpl>
+    {{f.value | json}}
+    <form #f="ngForm" id="add-item-form" class="modal-body bg-light">
+        <div class="mb-3">
+            <input class="form-control" type="text" placeholder="title" name="title" required ngModel />
+        </div>
+        <div class="mb-3">
+            <input class="form-control" type="number" placeholder="price" name="price" required ngModel />
+        </div>
+        <div class="mb-3">
+            <select name="category" class="form-control" required ngModel>
+                <option value="" disabled selected>category</option>
+                <option value="food">food</option>
+                <option value="clothes">clothes</option>
+            </select>
+        </div>
+        <hr />
+        <button (click)="onClick(f.value)" [disabled]='f.invalid' class="btn btn-secondary">send item</button>
+    </form>
+</ng-template>
+
+
+<button (click)="open(tpl)">add item</button>

@@ -1,8 +1,40 @@
 <div class="row">
   <div class="col-3">
-    <app-search [controls]="['title', 'priceFrom']"></app-search>
+    <app-search
+      (searchChange)="updateFilters($event)"
+      [controls]="['title', 'priceFrom']"
+    ></app-search>
   </div>
   <div class="col-9">
-    <app-grid (onAction)="actionHandler($event)" [data]="data" [config]="gConfig"></app-grid>
+    <div class="row">
+      <div class="col-2">
+        <select
+          class="form-control"
+          [ngModel]="filters.value.itemsPerPage"
+          #ipp
+          (change)="updateFilters({ itemsPerPage: +ipp.value })"
+        >
+          <option *ngFor="let opt of [2, 5, 10]">
+            {{ opt }}
+          </option>
+        </select>
+      </div>
+      <div class="col-2">
+        <app-add-item (refresh)="fetchItems()"></app-add-item>
+      </div>
+      <div class="col-8">
+        <ngb-pagination
+          [collectionSize]="total"
+          [pageSize]="filters.value.itemsPerPage || 0"
+          [maxSize]="6"
+          (pageChange)="updateFilters({ currentPage: $event })"
+        ></ngb-pagination>
+      </div>
+    </div>
+    <app-grid
+      (onAction)="actionHandler($event)"
+      [data]="data"
+      [config]="gConfig"
+    ></app-grid>
   </div>
 </div>

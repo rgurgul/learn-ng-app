@@ -14,6 +14,8 @@ import { SearchComponent } from './components/search/search.component';
 import { ItemDetailsComponent } from './pages/item-details/item-details.component';
 import { AuthComponent } from './components/auth/auth.component';
 import { FormsModule } from '@angular/forms';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { AddItemComponent } from './components/add-item/add-item.component';
 
 @NgModule({
   declarations: [
@@ -25,13 +27,15 @@ import { FormsModule } from '@angular/forms';
     GridComponent,
     SearchComponent,
     ItemDetailsComponent,
-    AuthComponent
+    AuthComponent,
+    AddItemComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    NgbModule
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }

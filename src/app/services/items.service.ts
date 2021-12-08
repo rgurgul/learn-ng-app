@@ -15,13 +15,13 @@ export class ItemsService implements HttpServiceModel {
 
   }
   fetch(filters?: { [key: string]: any; }): Observable<any> {
-    return this.http.get(Api.DATA_ITEMS);
+    return this.http.get(Api.DATA_ITEMS, { params: filters });
   }
   get(id: string): Observable<any> {
     return this.http.get(Api.DATA_ITEMS + "/" + id);
   }
   add(item: any): Observable<any> {
-    throw new Error('Method not implemented.');
+    return this.http.post(Api.DATA_ITEMS, item);
   }
   update(item: any): Observable<any> {
     throw new Error('Method not implemented.');
