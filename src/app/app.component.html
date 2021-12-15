@@ -1,12 +1,21 @@
-<nav class="nav nav-pills mb-2 bg-light border">
-  <a href="items" class="nav-item nav-link">items</a>
-  <a href="workers" class="nav-item nav-link">workers</a>
-</nav>
+<div class="row align-items-center mb-2 bg-light border shadow-sm">
+  <div class="col">
+    <nav class="nav nav-pills">
+      <a href="items" class="nav-item nav-link">items</a>
+      <a href="workers" class="nav-item nav-link">workers</a>
+    </nav>
+  </div>
+  <div class="col">
+
+  </div>
+</div>
 <div class="container-fluid">
-  <div class="card my-3 p-4 bg-light">
+  <div class="card my-3 p-4 bg-light shadow-sm">
     <div class="card-body">
       <router-outlet></router-outlet>
     </div>
   </div>
-  <course-footer courses></course-footer>
+  <div class="shadow">
+    <course-footer courses></course-footer>
+  </div>
 </div>
