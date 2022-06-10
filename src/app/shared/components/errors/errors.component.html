@@ -1,5 +1,5 @@
 <div *ngFor="let item of errors | keyvalue">
-  <div [ngSwitch]="item.key" class="text-danger fw-bold text-sm">
+  <div [ngSwitch]="item.key" class="bg-red-600 font-semibold text-sm">
     <small *ngSwitchCase="'required'"> pole wymagane </small>
     <small *ngSwitchCase="'pattern'"> coś nie halo </small>
     <small *ngSwitchCase="'email'"> email not ok </small>

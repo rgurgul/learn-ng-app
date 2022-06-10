@@ -60,3 +60,8 @@ export interface ItemsFiltersModel {
   currentPage?: number;
   itemsPerPage?: number;
 }
+
+export interface Action {
+  type: string,
+  payload: any
+}

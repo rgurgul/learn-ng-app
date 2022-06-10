@@ -1,19 +1,8 @@
-<div class="container-fluid">
-  <div class="row align-items-center mb-2 bg-light border shadow-sm">
-    <div class="col">
-      <nav class="nav nav-pills py-3">
-        <a href="items" class="nav-item nav-link">items</a>
-        <a href="workers" class="nav-item nav-link">workers</a>
-      </nav>
-    </div>
-    <div class="col"></div>
-  </div>
-  <div class="card my-3 p-4 bg-light shadow-sm">
-    <div class="card-body">
-      <router-outlet></router-outlet>
-    </div>
-  </div>
-  <div class="shadow">
-    <course-footer courses></course-footer>
-  </div>
+<div class="p-4">
+  <nav class="flex">
+    <a href="items" class="mr-6">items</a>
+    <a href="workers" class="mr-6">workers</a>
+  </nav>
+  <router-outlet></router-outlet>
+  <course-footer courses></course-footer>
 </div>
