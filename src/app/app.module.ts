@@ -17,6 +17,14 @@ import { ItemsComponent } from './pages/components/items/items.component';
 import { WorkersComponent } from './pages/components/workers/workers.component';
 import { RegisterComponent } from './pages/components/register/register.component';
 import { AuthComponent } from './pages/components/auth/auth.component';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { GridComponent } from './shared/components/grid/grid.component';
+import { SearchComponent } from './shared/components/search/search.component';
+import { MaterialModule } from './material.module';
+import { ItemComponent } from './pages/components/item/item.component';
+import { FormsModule } from '@angular/forms';
+import { AuthInterceptor } from './shared/utils/auth.interceptor';
+import { AddItemComponent } from './pages/components/add-item/add-item.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +35,11 @@ import { AuthComponent } from './pages/components/auth/auth.component';
     ItemsComponent,
     WorkersComponent,
     RegisterComponent,
-    AuthComponent
+    AuthComponent,
+    GridComponent,
+    SearchComponent,
+    ItemComponent,
+    AddItemComponent
   ],
   imports: [
     BrowserModule,
@@ -38,9 +50,14 @@ import { AuthComponent } from './pages/components/auth/auth.component';
     MatButtonModule,
     MatSidenavModule,
     MatIconModule,
-    MatListModule
+    MatListModule,
+    HttpClientModule,
+    MaterialModule,
+    FormsModule
   ],
-  providers: [],
+  providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }
+  ],
   bootstrap: [AppComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })

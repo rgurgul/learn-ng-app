@@ -1,1 +1,24 @@
-<p>auth works!</p>
+<ng-template #form>
+  <div class="p-4 bg-green-400 my-4 rounded">
+    {{f.valid}}
+    <br>
+    {{f.value|json}}
+    <br>
+    {{f.submitted}}
+  </div>
+
+  <form #f="ngForm" (submit)="onSubmit(f)" class="space-x-5">
+    <mat-form-field>
+      <mat-label>username</mat-label>
+      <input matInput type="text" required minlength="5" name="username" ngModel="admin@localhost">
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>password</mat-label>
+      <input matInput type="text" required pattern="[a-zA-Z0-9]{4,8}" name="password" ngModel="Admin1">
+    </mat-form-field>
+    <button mat-raised-button>log in</button>
+  </form>
+</ng-template>
+
+
+<button mat-raised-button (click)="logOut()" *ngIf="authService.access; else form">log out</button>

@@ -1,1 +1,14 @@
-<p>items works!</p>
+<div class="flex gap-5 items-start">
+  <div class="p-4 shadow shadow-red-400 rounded">
+    <app-search (action)="filterItems($event)" [controls]="['title', 'priceFrom']">
+      <div class="text-red-400">Search componetn</div>
+    </app-search>
+  </div>
+  <div class="shadow shadow-blue-200 p-4 rounded">
+    <button mat-raised-button (click)="addItem()">add item</button>
+    <app-grid [data]="items" [config]="gridConfig" (action)="actionHandler($event)"></app-grid>
+  </div>
+  <div>
+    <router-outlet></router-outlet>
+  </div>
+</div>

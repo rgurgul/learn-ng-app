@@ -1,0 +1,35 @@
+<p>grid works!</p>
+<!-- {{data|json}} -->
+<table>
+  <thead>
+    <tr>
+      <th>xy</th>
+      <th>yx</th>
+      <th>z</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let item of data">
+      <td *ngFor="let conf of config">
+        <div [ngSwitch]="conf.type">
+          <div *ngSwitchCase="'input'">
+            <!-- <input matInput type="text" [value]="item[conf.key]"> -->
+            <mat-form-field class="example-full-width" appearance="fill">
+              <mat-label>Favorite food</mat-label>
+              <input matInput placeholder="Ex. Pizza" [value]="item[conf.key]">
+            </mat-form-field>
+          </div>
+          <div *ngSwitchCase="'image'">
+            <img [src]="item[conf.key]" width="150">
+          </div>
+          <div *ngSwitchCase="'button'">
+            <button (click)="onClick(item.id, conf.text)" mat-raised-button color="primary">{{conf.text}}</button>
+          </div>
+          <div *ngSwitchDefault>
+            {{item[conf.key]}}
+          </div>
+        </div>
+      </td>
+    </tr>
+  </tbody>
+</table>

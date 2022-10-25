@@ -1,0 +1,24 @@
+{{f.submitted}}
+<form #f="ngForm" (submit)="onSubmit(f.value)" class="space-y-4 flex flex-col">
+  <mat-form-field>
+    <mat-label>title</mat-label>
+    <input matInput type="text" required name="title" ngModel>
+    <mat-error *ngIf="f.controls['title']?.hasError('required')">
+      Field is <strong>required</strong>
+    </mat-error>
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label>price</mat-label>
+    <input matInput type="text" required name="price" ngModel>
+    <mat-error>
+      {{f.controls['price']?.errors | json}}
+    </mat-error>
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label>category</mat-label>
+    <input matInput type="text" name="category" ngModel required>
+    <app-errors [errors]="f.controls['category']?.errors"></app-errors>
+  </mat-form-field>
+
+  <button [disabled]="f.invalid" mat-raised-button>send</button>
+</form>
