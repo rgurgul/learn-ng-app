@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, switchMap } from 'rxjs';
 import { GridDataModel, HttpResponseModel, ItemsFiltersModel, ItemsKeys } from 'src/app/shared/utils/models';
 import { ItemsService } from '../../services/items.service';
 import { AddItemComponent } from '../add-item/add-item.component';
@@ -35,21 +35,23 @@ export class ItemsComponent implements OnInit {
 
   ngOnInit(): void {
 
-
-    this.filters$.subscribe((val) => {
-      console.log('filters', val);
-      this.fetchItems();
+    this.filters$
+    .pipe(
+      switchMap((val) => this.itemsService.fetch(val))
+    )
+    .subscribe((resp) => {
+      this.items = resp.data;
+      this.total = resp.total;
     })
-
 
   }
 
-  fetchItems() {
+/*   fetchItems() {
     this.itemsService.fetch(this.filters$.value).subscribe((resp: HttpResponseModel) => {
       this.items = resp.data;
       this.total = resp.total;
-    });
-  }
+    }); */
+
 
   addItem() {
     const openedDialog = this.dialog.open(AddItemComponent);
@@ -68,7 +70,8 @@ export class ItemsComponent implements OnInit {
     switch (type) {
       case 'remove':
         this.itemsService.remove(id).subscribe(() => {
-          this.fetchItems();
+          //this.fetchItems();
+          this.filters$.next(this.filters$.value);
         });
         break;
       case 'more':
